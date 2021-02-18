@@ -17,3 +17,11 @@
     .babelrc
     webpack.config.js
     webpack解析打包文件是通过【webpack】命令执行的
+
+4. 写文档&写测试用例
+    1. npm i gitbook-cli -g
+    2. SUMMARY.md，具体目录查看截图
+    3. gitbook init 将SUMMARY.md中使用到的不存在的目录创建出来
+    4. gitbook build 将SUMMARY.md转换为html格式，转换后的html存放在_book文件夹下
+   
+5. 该章节内容具体参考视频
