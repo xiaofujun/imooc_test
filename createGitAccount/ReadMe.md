@@ -15,3 +15,13 @@
 5. 设置name和email： 
    设置：git config user.name 'xfj'
    获取：git config user.name
+
+# git的一些基本操作命令
+1. git status
+2. git diff
+3. git add .
+4. git commit -m '更新的信息'
+5. git push origin master
+
+# git分支
+至少需要两个分支
