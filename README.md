@@ -1,6 +1,6 @@
 # imooc_test
 
-mooc的一些案例
+mooc网上的一些案例
 
 
 ## 交流&提问
