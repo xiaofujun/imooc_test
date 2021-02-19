@@ -15,7 +15,8 @@ mooc的一些案例
 
 ## 交流&提问
 
-https://github.com/xiaofujun/imooc_test/issues
+- 提问：https://github.com/xiaofujun/imooc_test/issues
+- QQ群（及时反馈）
 
 ## 关于作者
 

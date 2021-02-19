@@ -5,7 +5,7 @@
 2. 项目账号
     其下只有一个主流产品。
 
-推荐注册项目账号，原因：官网地址简短明了。
+推荐注册项目账号，原因：官网地址简短明了（通过github配置创建的官网）。
 
 # 账号注册中的注意事项
 1. description： 要有特色，凸出，能吸引用户；
@@ -15,13 +15,3 @@
 5. 设置name和email： 
    设置：git config user.name 'xfj'
    获取：git config user.name
-
-# git的一些基本操作命令
-1. git status
-2. git diff
-3. git add .
-4. git commit -m '更新的信息'
-5. git push origin master
-
-# git分支
-至少需要两个分支
