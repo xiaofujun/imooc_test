@@ -1,5 +1,5 @@
 {
-  "name": "fast-cache",
+  "name": "fast-cache-xiaofujun",
   "version": "0.0.2",
   "description": "短小精悍的防止内存泄露的工具",
   "main": "src/index.js",

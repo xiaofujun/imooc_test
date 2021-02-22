@@ -5,6 +5,7 @@ module.exports = {
         filename: './release/bundle.js',
         path: __dirname,
     },
+    target: ['web', 'es5'],
     module: {
         rules: [
             {

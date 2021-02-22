@@ -10,9 +10,9 @@
 
 - 通过git clone将项目代码克隆到本地
 - 进入fast-cache文件夹下
-  - 1. 安装项目的依赖`npm install`
-  - 2. 运行`npm run release`命令
-  - 3. 访问index.html即可看到效果
+  - 安装项目的依赖`npm install`
+  - 运行`npm run release`命令
+  - 访问index.html即可看到效果
 
 ## 快速使用
 

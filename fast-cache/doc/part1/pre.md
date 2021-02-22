@@ -16,8 +16,33 @@
 # 发布到npm
 最后要提交到npm上，能让使用者通过npm进行安装。
 
-1. npm add user 和 npm login来登录 
-2. npm publish .
+- `npm adduser`
+    通过命令行进行npm注册账号并登录
+
+- `npm login`
+    npm官网已经注册过账号，直接登录
+    ![](./npm-login.png)
+
+- `npm publish .`
+    发布包
+    ![](./npm-publish.png)
+
+- `npm unpublish fast-cache-xiaofujun --force`
+    撤销发布：`--force`表示强制撤销
+    ![](./npm-unpublish.png)
+
+
+### 注意事项：
+在登录npm官网时，要注意npm的registry是否正确，否则无法成功登录。
+- 查看registry: `npm config get registry`
+- 设置registry: `npm config set registry http://registry.npmjs.org/` 
+
+
+### 访问下载
+- cdn： https://cdn.jsdelivr.net/npm/fast-cache-xiaofujun/release/bundle.js
+    ![](./cdn访问.png)
+- npm:  npm install fast-cache-xiaofujun
+
 
 # 使用cdn
 cdn会自动使用最新的版本
