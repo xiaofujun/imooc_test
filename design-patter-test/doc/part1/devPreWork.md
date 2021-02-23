@@ -61,6 +61,18 @@ es6语法并不能完全被浏览器解析，所以我们需要使用webpack等�
 `webpack-dev-server is configured by default to support live-reload of files as you edit your assets while the server is running.`谷歌翻译为`默认情况下，将webpack-dev-server配置为在服务器运行时编辑资产时支持文件的实时重载。`即热部署。
 具体使用参考https://github.com/webpack/webpack-dev-server
 
+webpack-dev-server 打包编译后的文件是存储在内存中的,所以html文件中不需要手动引入js。
+webpack的热更新是通过websocket和服务器进行交互的。所以热更新会产生websocket接口。
+```json
+    {
+        "browserslist": [
+            "last 1 version",
+            "> 1%",
+            "ie 10"
+        ]
+    }
+```
+
 #### html-webpack-plugin是什么
 具体参考：https://webpack.js.org/plugins/html-webpack-plugin/
 
@@ -69,7 +81,7 @@ es6语法并不能完全被浏览器解析，所以我们需要使用webpack等�
         new HtmlWebpackPlugin()
     ]
 ```
-该语句可以自动在根目录下生成index.html，且将打包后的文件引入到html中。使用参考：https://github.com/jantimon/html-webpack-plugin
+该语句可以自动在根目录下生成index.html，单独使用不结合`webpack-dev-server`,则打包后生成的js文件将被引入到html中。使用参考：https://github.com/jantimon/html-webpack-plugin
 
 #### 使用配置
 - 安装`npm install webpack-dev-server html-webpack-plugin --save-dev --registry=https://registry.npm.taobao.org`
@@ -107,3 +119,5 @@ es6语法并不能完全被浏览器解析，所以我们需要使用webpack等�
     ```
 - 配置`package.json`文件，修改dev打包命令`webpack serve --config webpack.dev.config.js --mode development`
 
+### webpack5.x 搭建中遇到的问题
+webpack5.x搭建环境时遇到的问题汇总以及解决方案可以参考[https://blog.csdn.net/weixin_39889465/article/details/113993526](https://blog.csdn.net/weixin_39889465/article/details/113993526)
