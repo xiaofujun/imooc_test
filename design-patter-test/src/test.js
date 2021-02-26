@@ -1,37 +1,49 @@
-// 验证单例模式
+// 演示 nodejs 中的自定义事件
+const EventEmitter  = require('events').EventEmitter;
 
-class ShoppingCar {
-    constructor(counts) {
-        this.counts = counts;
+const eventEmitter = new EventEmitter();
+
+// 通过 EventEmitter.on 注册监听
+eventEmitter.on('click', function(info) {
+    console.log(`第一个：${info}`)
+})
+
+eventEmitter.on('click', function(info) {
+    console.log(`第2个：${info}`)
+})
+
+eventEmitter.on('click', function(info) {
+    console.log(`第3个：${info}`)
+})
+
+eventEmitter.on('change', function(info) {
+    console.log(`第一个：${info}`)
+})
+
+eventEmitter.on('change', function(info) {
+    console.log(`第2个：${info}`)
+})
+
+eventEmitter.on('change', function(info) {
+    console.log(`第3个：${info}`)
+})
+
+eventEmitter.emit('click', '点击事件');
+eventEmitter.emit('change', '值变化事件')
+
+
+// 类的继承
+class Dog extends EventEmitter {
+    constructor(name) {
+        super();
+        this.name = name;
     }
 
-    showCounts() {
-        alert(this.counts);
+    wang() {
+        console.log(`${this.name}汪汪汪`);
     }
 }
 
-// 通过在类上添加静态方法，结合闭包，初步实现单例
-ShoppingCar.getInstance = (function() {
-    let instance;
-
-    return function(counts) {
-        if(!instance) {
-            instance = new ShoppingCar(counts);
-        }
-    
-        return instance;
-    }
-})(); 
-
-// 测试
-let obj1 = ShoppingCar.getInstance('1');
-obj1.showCounts(); // 1
-
-let obj2 = ShoppingCar.getInstance('3');
-obj2.showCounts(); // 1
-
-let obj3 = new ShoppingCar('5');
-obj3.showCounts(); // 5
-
-console.log('obj1 === obj2', obj1 === obj2);  // true
-console.log('obj1 === obj3', obj1 === obj3); // false
+const xiaohei = new Dog('xiaohei');
+xiaohei.on('hasPeople', xiaohei.wang);
+xiaohei.emit('hasPeople');

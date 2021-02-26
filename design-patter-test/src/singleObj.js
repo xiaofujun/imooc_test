@@ -30,4 +30,8 @@ obj1.showCounts(); // 1
 let obj2 = ShoppingCar.getInstance('3');
 obj2.showCounts(); // 1
 
+let obj3 = new ShoppingCar('5');
+obj3.showCounts(); // 5
+
 console.log('obj1 === obj2', obj1 === obj2);  // true
+console.log('obj1 === obj3', obj1 === obj3); // false

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery Callback</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+</head>
+<body>
+    <p>使用 jquery.Callback 的方法</p>
+    <ul>
+        <li>
+            <p> 1. 引入 jquery 包 </p>
+        </li>
+        <li>
+            <p> 2. 实例化 jquery.Callbacks </p>
+        </li>
+        <li>
+            <p> 3. 通过 callback.add 添加 observer </p>
+        </li>
+        <li>
+            <p> 4. 通过 callback.fire() 触发状态的改变以及 observer 对应的操作 </p>
+        </li>
+    </ul>
+
+    <script>
+        // 实例化 callback
+        var callback = jQuery.Callbacks();
+
+        // 添加 observer
+        callback.add(function(info) {
+            console.log(`第一个：${info}`);
+        })
+
+        callback.add(function(info) {
+            console.log(`第二个: ${info}`);
+        })
+
+        callback.add(function(info) {
+            console.log(`第三个: ${info}`);
+        })
+
+        // subject 发生变化，触发 observer
+        callback.fire('a1');
+        callback.fire('a2'); 
+
+    </script>
+</body>
+</html>
