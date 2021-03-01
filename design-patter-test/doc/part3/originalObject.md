@@ -84,6 +84,8 @@
 
 - 应用场景
 1. es7 装饰器：配合插件`@babel/plugin-proposal-decorators`
+
+
 ```js
 @addTargetName
 class Circle {
@@ -116,7 +118,7 @@ console.log(Circle.enable1); // 'xfj1'
 console.log(Circle.enable); // undefined
 ```
 
-2. [core-decorators](https://www.npmjs.com/package/core-decorators)
+1. [core-decorators](https://www.npmjs.com/package/core-decorators)
 使用时`.babelrc`的配置信息：
 ```json
 {
@@ -142,6 +144,8 @@ console.log(Circle.enable); // undefined
 ![](./image/proxy.png)
 
 - 代码演示
+
+
 ```js
 const star = {
     name: 'xfj',
@@ -174,9 +178,7 @@ console.log(obj.name)
 console.log(obj.age)
 console.log(obj.tel)
 obj.subPrice = 110000;
-console.log(obj.money)
-// obj.subPrice = 90000;
-// console.log(obj.money)
+console.log(obj.money);
 ```
 
 - 应用场景
