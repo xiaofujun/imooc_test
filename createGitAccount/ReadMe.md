@@ -12,6 +12,8 @@
 2. public/private: 开源的项目一般用public，用户可以随便下载；企业公司的code一般用private，他人不可随意下载，类似交给github托管；
 3. license: 选择无纠纷的MIT。
 4. 添加ssk：ssk是连接本地电脑和github服务器的钥匙，只有添加成功才能将本地代码提交到github上。
+    `ssh-keygen -t rsa -C "your_email@example.com"`
+
 5. 设置name和email： 
    设置：git config user.name 'xfj'
    获取：git config user.name
