@@ -10,5 +10,5 @@
 * [第三章: 23种设计模式](doc/part3/ReadMe.md)
     * [第一节: 创建型](doc/part3/createObject.md)
     * [第二节: 结构型](doc/part3/originalObject.md)
-    * [第三节：行为型](doc/part3/behaviorObject.md)
+    * [第三节: 行为型](doc/part3/behaviorObject.md)
 

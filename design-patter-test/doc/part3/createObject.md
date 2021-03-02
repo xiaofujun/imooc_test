@@ -109,4 +109,35 @@
 根据已有对象克隆出新对象
 
 ### 应用
-1. js中的Object.create()函数
+js中的Object.create()函数
+```js
+    // 原型模式
+    let prototype = {
+        getName: function() {
+            console.log(`${this.first} ${this.last}`);
+        },
+        say: function() {
+            console.log('hello');
+        }
+    }
+
+    let x = Object.create(prototype);
+    x.first = 'zhang';
+    x.last = 'san';
+    x.getName();
+    x.say();
+
+    let y = Object.create(prototype);
+    y.first = 'li';
+    y.last = 'si';
+    y.getName();
+    y.say();
+```
+
+### 思考
+对比js中的原型 `prototype`:
+- `prototype` 可以理解为 es6 class 的一种底层原理
+- 而 class 是实现面向对象的基础，并不是服务于某个模式
+- 若干年后 es6 全面普及，大家可能会忽略掉 `prototype`(可能面向对象的基础 class 不使用 prototype 机制实现)
+- 但是 Object.create 却会长久存在（作为一种设计模式）
+![](./image/原型模式.jpg)
