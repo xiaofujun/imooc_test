@@ -38,6 +38,12 @@ module.exports = {
         open: true,  // Tells dev-server to open the browser after server had been started
         port: 9000,
         clientLogLevel: 'silent', // 当使用 inline mode 时， DevTools 会输出信息，例如：重新加载之前，出错之前或 Hot Module Replacement 被开启时。devServer.clientLogLevel 可能会导致日志过于冗余，你可以通过将其设置为 'silent' 来关闭日志
+        proxy: {
+            "/api": {
+                target: "http://localhost:54199",
+                // pathRewrite: {"^/api" : ""}, // 加上此语句，对应的服务器上的请求路径 不存在 '/api' 前缀
+            }
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
