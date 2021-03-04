@@ -1,10 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-// entry: './src/index.js',
-// entry: './src/createObj.js',
 module.exports = {
-    entry: './src/test.js',
+    entry: './src/index.js',
     output: {
         path: __dirname,
         filename: './release/bundle.js',
@@ -41,7 +39,7 @@ module.exports = {
         proxy: {
             "/api": {
                 target: "http://localhost:54199",
-                // pathRewrite: {"^/api" : ""}, // 加上此语句，对应的服务器上的请求路径 不存在 '/api' 前缀
+                pathRewrite: {"^/api" : "/src/demo/api"}, // 加上此语句，对应的服务器上的请求路径 不存在 '/api' 前缀
             }
         }
     },

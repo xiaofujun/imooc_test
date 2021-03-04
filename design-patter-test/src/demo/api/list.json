@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "《心经》",
+        "price": 40,
+        "discount": true
+    },
+    {
+        "id": 2,
+        "name": "《第一炉香》",
+        "price": 100,
+        "discount": false
+    }, 
+    {
+        "id": 3,
+        "name": "《陆犯焉识》",
+        "price": 100,
+        "discount": true
+    },
+    {
+        "id": 4,
+        "name": "《民典法》",
+        "price": 20,
+        "discount": false
+    },
+    {
+        "id": 5,
+        "name": "《第二炉香》",
+        "price": 100,
+        "discount": true
+    }
+]

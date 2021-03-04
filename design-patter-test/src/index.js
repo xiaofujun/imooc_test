@@ -1,43 +1,7 @@
-class People {
-    constructor (name, house) {
-        this.name = name;
-        this.house = house;
-    }
+// 下面做一个简单的购物车示例
+// index.js 是入口文件
+import App from './demo/app';
 
-    eat() {
-        alert(`${this.name} eat something`);
-    }
-
-    city() {
-        alert(`${this.name} live ${this.house ? this.house.city : 'shanghai'}`);
-    }
-}
-
-class Student extends People {
-    constructor (name, number, house) {
-        super(name, house);
-        this.number = number;
-    }
-
-    study() {
-        alert(`${this.name} studyNum ${this.number}`);
-    }
-}
-
-class House {
-    constructor (city) {
-        this.city = city;
-    }
-
-    getCity() {
-        alert(`${city}`);
-    }
-}
-
-let xiaohong = new Student('xiaohong', 'A1');
-xiaohong.study();
-
-let house = new House('beijing');
-let xiaoming = new Student('xiaoming', 'A2', house);
-xiaoming.city();
-console.log('ssfdd')
+const app = new App('app');
+// 初始化
+app.init();
