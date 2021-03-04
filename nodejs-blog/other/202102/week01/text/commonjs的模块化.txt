@@ -1,0 +1,3 @@
+nodejs中默认有的模块化规范
+require()
+module.exports=

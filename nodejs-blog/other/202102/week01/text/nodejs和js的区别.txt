@@ -1,0 +1,16 @@
+1. ECMAScript
+    1.  定义了语法，js和nodejs必须要遵守的，例如变量的定义，判断，循环，函数等如何写。
+    2.  不能操作dom，不能监听事件等
+
+2. javascript(js)
+    1.  遵守了ECMAScript语法，外加Web API（W3C）,缺一不可。两者结合完成浏览器端的操作。
+    2.  W3C内容遵守ECMAScript语法。
+
+3. nodejs
+    1. 遵守了ECMAScript语法，外加node API，缺一不可。两者结合完成server端的操作。
+    2. node API遵守ECMAScript语法。
+
+总结：
+    ECMAScript是语法规范。
+    nodejs = ECMAScript+nodejs API; 
+    js = ECMAScript + Web API;

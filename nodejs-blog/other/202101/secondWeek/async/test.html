@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // await只能用在async上下文中
+        async function getObjKeys() {
+            let arr = [1,2,3,4,5,6,7];
+
+            for(let i = 0; i < arr.length; i++) {
+                await console.log(arr[i]);
+            }
+        }
+
+        // 错误用法
+        // async function getObjKeys() {
+        //     let arr = [1,2,3,4,5,6,7];
+
+        //     arr.forEach(function(item) {
+        //         await console.log(arr[i]);
+        //     })
+        // }
+
+        // getObjKeys();
+
+
+        // await后面可以跟promise
+        function sendRequest(url) {
+            return new Promise((resolve, reject) => {
+                let xhr = new XMLHttpRequest();
+            
+                xhr.open('get', url, true);
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState == 4 && xhr.status == 200) {
+                        console.log('接口响应数据返回成功')
+                        reject('成功了');
+                    }
+                }
+                xhr.send(null);
+            })
+        }
+
+        async function getMsg() {
+            try {
+                let result = await sendRequest('/api/blog/list');
+                console.log('true', result);
+            }catch(err) {
+                console.log('error', err);
+            }
+            console.log('关闭loading');
+        }
+
+        getMsg();
+    </script>
+</body>
+</html>

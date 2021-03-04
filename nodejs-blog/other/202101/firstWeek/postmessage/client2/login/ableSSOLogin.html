@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client2</title>
+</head>
+<body>
+    <h1>client2</h1>
+    <div style="display: none;">
+		<form id="ssoLoginForm" action="/integration/ablesso" method="GET">
+			<input id="ableToken" name="ableToken" type="text">
+            <input id="path" name="path" type="text">
+		</form>
+    </div>
+
+    <script>
+        top.postMessage('ok', 'http://127.0.0.1:8899');
+        window.addEventListener('message', function(event) {
+            if(event.origin != 'http://127.0.0.1:8899') {
+                return;
+            }
+            document.getElementById('ableToken').value = event.data;
+
+            if(window.location && window.location.search && window.location.search.length > 1) {
+                    var params = window.location.search.slice(1).split('&');
+
+                    if(params && params.length) {
+                        document.getElementById('path').value = params[0].split('=')[1];
+                    }
+            }
+            
+            var form = document.getElementById('ssoLoginForm');
+
+            form.submit();
+        })
+    </script>
+</body>
+</html>

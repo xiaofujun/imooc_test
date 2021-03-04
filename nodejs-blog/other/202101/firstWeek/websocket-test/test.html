@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        if("WebSocket" in window) {
+            let webSocket = new WebSocket("ws://127.0.0.1:8080");
+            console.log('new后的值：', webSocket.readyState);
+
+            // webSocket的事件监听
+            webSocket.onopen = function() {
+                console.log('onopen方法中的值：', webSocket.readyState);
+                webSocket.send('1111');
+            }
+
+            webSocket.onerror = function() {
+                console.log('onerror方法中的值：', webSocket.readyState);
+            }
+
+            webSocket.onmessage = function(event) {
+                console.log('onmessage方法中的值：', webSocket.readyState);
+                console.log('接收到服务端返回的数据：', event.data);
+            }
+
+            webSocket.onclose = function() {
+                console.log('onclose方法中的值：', webSocket.readyState)
+            }
+        } else {    
+            alert('当前浏览器不支持websocket');
+        }
+    </script>
+</body>
+</html>

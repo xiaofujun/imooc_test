@@ -1,0 +1,16 @@
+{
+    "apps": {
+        "name": "blog",
+        "script": "./bin/www",
+        "watch": true,
+        "ignore_watch": [
+            "node_modules",
+            "log",
+            "_book"
+        ],
+        "instances": 1,
+        "error_file": "log/error.log",
+        "out_file": "log/custom.log",
+        "log_data_format": "YYYY-MM-DD HH:mm:ss"
+    }
+}

@@ -1,0 +1,40 @@
+<!-- samesite的应用场景是iframe中跳转到第三方的地址，在Chrome浏览器中存在跨域问题（77版本往后） -->
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>samesite</title>
+</head>
+<body>
+    我是oa的页面
+    <button id="skip">点击发送请求</button>
+    <script>
+        document.getElementById('skip').addEventListener('click', sendRequest);
+
+        function sendRequest() {
+            let xhr = null;
+            if(XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xhr.onreadystatechange = function() {
+                if(4 == xhr.readyState && xhr.status == 200) {
+                    let result = xhr.responseText;
+                    if(xhr.responseText) {
+                        try {
+                            result = JSON.parse(xhr.responseText);
+                        } catch(err){}
+                    }
+                    
+                    console.log(result);
+                }
+            };
+            xhr.open('get', 'http://127.0.0.1:8080/api/blog/list', true);
+            xhr.send(null);
+        }
+    </script>
+</body>
+</html>

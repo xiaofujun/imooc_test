@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getList()">获取列表数据，请在console查看</button>
+
+    <script>
+        function getList() {
+            let xhr = null;
+            if(XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject('Microsoft:XMLHTTP');
+            }
+
+            xhr.onreadystatechange  = function() {
+                if(xhr.status == 200 && xhr.readyState == 4) {
+                    let result = xhr.responseText;
+
+                    try{
+                        result = JSON.parse(result);
+                    }catch(err){}
+                    console.log(result);
+                }
+            }
+
+            xhr.open('get', 'http://127.0.0.1:54188/api/blog/list', true);
+            xhr.send(null);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, max-scale=1.0">
+        <title>添加博客</title>
+        <script type="text/javascript" src="./util.js" ></script>
+        <style>
+            html, body, h2, hr {
+                margin: 0;
+                padding: 0;
+            }
+
+            .addBlogPage {
+                margin: 10px 20px;
+            }
+
+            .title {
+                margin-bottom: 5px;
+            }
+
+            .blogInfo {
+                margin: 20px 10px 0;
+            }
+
+            .formItem {
+                margin-top: 10px;
+            }
+
+            .formItem input, .formItem textarea {
+                width: 100%;
+            }
+
+            #submitBtn {
+                float: right;
+                background: blanchedalmond;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="addBlogPage">
+            <h2 class="title">添加博客</h2>
+            <hr />
+            <div class="blogInfo">
+                <form id="blogForm" onsubmit="return false">
+                    <div class="formItem">
+                        <label for="title">
+                            标题
+                            <div>
+                                <input required id="title" name="title" type="text" >
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="formItem">
+                        <label for="content">
+                            内容
+                            <div>
+                                <textarea required rows="10" cols="50" id="content" name="content"></textarea>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="formItem">
+                        <button id="submitBtn" type="submit">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            window.onload = function() {
+                document.querySelector('#submitBtn').addEventListener('click', function() {
+                    const title = document.querySelector('#title').value;
+                    const content = document.querySelector('#content').value;
+
+                    if(title && content) {
+                        getXHR('/api/blog/add', 'post', {title, content})
+                            .then(result => {
+                                if(result.status) {
+                                    alert(result.message);
+                                    location.href = '/index.html';
+                                } else {
+                                    alert(result.message);
+                                    location.reload();
+                                }
+                            });
+                    } else {
+                        alert('请将博客内容填写完整')
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

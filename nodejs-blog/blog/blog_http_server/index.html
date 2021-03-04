@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, max-scale=1.0">
+        <title>首页</title>
+        <script type="text/javascript" src="./util.js" ></script>
+        <style>
+            html, body, ul, h2, hr, p {
+                margin: 0;
+                padding: 0;
+            }
+
+            .listPage {
+                margin: 10px 20px;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+
+            ul li {
+                padding: 10px 0px 5px;
+                margin: 0px 5px;
+                border-bottom: 1px solid #e8e8e8;
+            }
+
+            .title {
+                margin-bottom: 5px;
+            }
+
+            .title, .failInfo {
+                text-align: center;
+            }
+
+            #opBtn {
+                text-align: right;
+            }
+
+            #opBtn .addBlog {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .failInfo {
+                font-size: 12px;
+                color: #f70e03;
+            }
+
+            .loginInButton, .addBlogButton {
+                font-size: 12px;
+                margin-left: 10px;
+            }
+
+            .detailBlog {
+                cursor: pointer;
+                display: inline-block;
+                width: 90%;
+            }
+
+            .detailBlogContent, .detailBlogCreateTime {
+                font-size: 12px;
+                color: #6d6565;
+            }
+
+            .detailBlogContent {
+                margin-top: 5px;
+            }
+
+            .operateIcon {
+                text-align: right;
+                display: inline-block;
+                width: 9%;
+                font-size: 14px;
+                color: red;
+            }
+
+            .operateIcon span {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="listPage">
+            <h2 class="title">博客首页</h2>
+            <div id="opBtn"></div>
+            <hr />
+            <ul class="list"></ul>
+        </div>
+
+        <script>
+            window.onload = function() {
+                // 动态添加的新建博客按钮事件绑定
+                document.querySelector('#opBtn').addEventListener('click', function(e) {
+                    let ev = e || window.event;
+                    let target = ev.target || ev.srcElement;
+
+                    if(target.nodeName.toLowerCase() === 'button' && target.className.toLowerCase() === 'addblog') {
+                        location.href = '/addBlog';
+                    }
+                })
+
+                // 点击跳转登录页面(事件委托)
+                document.getElementsByClassName('list')[0].addEventListener('click', function(e) {
+                    let ev = e || window.event;
+                    let target = ev.target || ev.srcElement;
+
+                    if(target.nodeName.toLowerCase() === "input" && target.type.toLowerCase() === "button") {
+                        switch (target.className.toLowerCase()) {
+                            // 登录
+                            case "logininbutton":
+                                location.href = '/login.html';
+                                break;
+                            // 添加微博 
+                            case "addblogbutton":
+                                location.href = '/addBlog.html';
+                                break;
+
+                        }
+                    } else if (target.nodeName.toLowerCase() === 'span' && target.parentNode.className.toLowerCase() === 'operateicon') {
+                        switch(target.className.toLowerCase()) {
+                            case "editblog":
+                                location.href = `/editBlog.html?id=${target.attributes[0].nodeValue}`;
+                                break;
+                            case "deleteblog":
+                                deleteBlog(target.attributes[0].nodeValue);
+                                break;
+                        }
+                    }
+                })
+
+                // 删除博客
+                function deleteBlog(id) {
+                    getXHR(`/api/blog/delete?id=${id}`, 'post')
+                      .then(result => {
+                          alert(result.message)
+                          if(result.status) {
+                              location.reload();
+                          }
+                      })
+                }
+
+                // 获取listDom
+                function getContentBox() {
+                    return document.getElementsByClassName('list')[0];
+                }
+
+                // 获取列表信息失败
+                function appendFailInfo(message) {
+                    const listDom = getContentBox();
+
+                    let failInfoLi = document.createElement('li');
+                    failInfoLi.classList.add('failInfo');
+                    failInfoLi.innerHTML = `<div>${message} <input type="button" value="点击跳转登录页面" class="loginInButton" /></div>`; 
+                    listDom.appendChild(failInfoLi);
+                }
+
+                // 获取列表并展示
+                function appendSuccessInfo(datas) {
+                    const listDom = getContentBox();
+
+                    if(datas && datas.length) {
+                        // 添加新建的操作按钮
+                        let opBtnDom = document.querySelector('#opBtn');
+                        let addBtn = document.createElement('button');
+                        addBtn.type = "button";
+                        addBtn.innerHTML = "新建博客";
+                        addBtn.className = "addBlog";
+                        opBtnDom.appendChild(addBtn);
+
+                        for(let i = 0; i < datas.length; i++) {
+                            let failInfoLi = document.createElement('li');
+                            failInfoLi.innerHTML = `<div class="detailBlog">
+                                <span class="detailBlogTitle">${datas[i].title}</span>
+                                <span class="detailBlogCreateTime">${new Date(datas[i].createtime).toLocaleString()}</span>
+                                <p class="detailBlogContent">${datas[i].content.length > 20 ? datas[i].content.slice(0, 20) + '...' : datas[i].content}</p>
+                            </div>
+                            <div class="operateIcon">
+                                <span data_key=${datas[i].id} class="editBlog">编辑</span>
+                                <span data_key=${datas[i].id} class="deleteBlog">删除</span>
+                            </div>`; 
+                            listDom.appendChild(failInfoLi);
+                        }
+                    } else {
+                        let failInfoLi = document.createElement('li');
+                        failInfoLi.classList.add('failInfo');
+                        failInfoLi.innerHTML = `<div>暂无数据，赶快写第一篇文章吧 <input type="button" value="写文章" class="addBlogButton" /></div>`; 
+                        listDom.appendChild(failInfoLi);
+                    }
+                }
+
+                // 调用接口，加载数据
+                getXHR('/api/blog/list', 'get')
+                    .then(result => {
+                        const {
+                            status,
+                            datas,
+                            message,
+                        } = result;
+                        
+                        if(status) {
+                            appendSuccessInfo(datas);
+                        } else {
+                            appendFailInfo(message);
+                        }
+                    })
+                    .catch(err => {
+                        alert(err);
+                    });
+            }
+        </script>
+    </body>
+</html>

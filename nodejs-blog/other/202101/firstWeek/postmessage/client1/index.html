@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>client1</title>
+</head>
+<body>
+    <h1>client1</h1>
+    <iframe src="http://127.0.0.1:9988/login/ableSSOLogin.html?path=%2fspa%2fportal%2fstatic%2findex.html%23%2fmain%2fportal%2fportal-2-1" frameborder="0"></iframe>
+
+    <script>
+        window.addEventListener('message', (event) => {
+            if(event.origin != 'http://127.0.0.1:9988') {
+                return;
+            }
+            if('ok' === event.data) {
+                event.source.postMessage('12345', event.origin);
+            }
+        });
+        
+    </script>
+</body>
+</html>

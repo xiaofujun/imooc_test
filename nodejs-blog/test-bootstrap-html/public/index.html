@@ -1,0 +1,28 @@
+<!-- <!DOCTYPE> 告诉web浏览器是基于哪个版本的html -->
+<!DOCTYPE html>
+<!-- lang: 告诉文档按什么语言进行解析（如果与浏览器中默认使用的语言有冲突，则会出现提示信息） -->
+<html lang="Zh-cn">
+    <head>
+        <!-- meta描述html文档的信息,只能位于head元素内，编码是utf-8 -->
+        <meta charset="UTF-8">
+        <!-- http-equiv 模拟http请求，X-UA-Comoatible是处理ie8的兼容性问题，IE=edge是以浏览器最高的版本展示页面 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- 适用手机, width=device-width, initial-scale=1.0 该设置可以让网页自适应手机屏幕 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 文档的标题 -->
+        <title>首页</title>
+        <!-- 样式的引入，只能出现在head标签内，ref可以指向外部文档 -->
+        <!-- relation：表明当前文档与被指向的链接文档的关系 stylesheet表示文档的外部样式表 -->
+        <!-- type: 被连接文档的类型 -->
+        <link rel="stylesheet" type="text/css" ref="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div>
+            <h1>bootstrap使用</h1>
+        </div>
+
+        <!-- 引入的js资源 -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, max-scale=1.0">
+        <title>登录页面</title>
+        <script type="text/javascript" src="./util.js" ></script>
+        <style>
+            html, body, h2, hr {
+                margin: 0;
+                padding: 0;
+            }
+
+            .loginPage {
+                margin: 10px 20px;
+                text-align: center;
+            }
+
+            .title {
+                margin-bottom: 5px;
+            }
+
+            .loginInfo {
+                margin-top: 20px;
+            }
+
+            .formItem {
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="loginPage">
+            <h2 class="title">登录页面</h2>
+            <hr />
+            <div class="loginInfo">
+                <form id="loginForm" onsubmit="return false">
+                    <div class="formItem">
+                        <label for="username">
+                            账号
+                            <input required id="username" name="username" type="text" >
+                        </label>
+                    </div>
+
+                    <div class="formItem">
+                        <label for="password">
+                            密码
+                            <input required id="password" name="password" type="password">
+                        </label>
+                    </div>
+
+                    <div class="formItem">
+                        <button id="submitBtn" type="submit">登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            window.onload = function() {
+                document.querySelector('#submitBtn').addEventListener('click', function() {
+                    const username = document.querySelector('#username').value;
+                    const password = document.querySelector('#password').value;
+
+                    getXHR('/api/user/loginin', 'post', {username, password})
+                        .then(result => {
+                            if(result.status) {
+                                confirm(`欢迎回来,${result.datas.realname}`)
+                                location.href = '/';
+                            } else {
+                                alert(result.message);
+                                location.reload();
+                            }
+                        });
+                })
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+
+QPS(Queries Per Second)： 每秒访问值
+
+日志的写入：
+    不等待回调就对同一个文件多次使用 fs.writeFile() 是不安全的。 对于这种情况，建议使用 fs.createWriteStream()。同样写入的内容需要用变量存储，耗费内存。
+
+日志的读取：
+    fs.readFile() 函数会缓冲整个文件。 若要最小化内存成本，则尽可能选择流式(使用 fs.createReadStream())。
+
+
+日志分类：
+    access log
+    custom log
+        error log    
+        event log
+
+
+日志选用文本记录的原因：
+    日志对性能要求不高（写入可以有延时）
+    日志比较大
+    日志没有表结构，也不需要进行类似表的联动查询
+    日志放在文件中，在不同的设备上都可以进行查看，不需要按章mysql等应用
